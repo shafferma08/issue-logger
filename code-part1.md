@@ -1,3 +1,4 @@
+## updateActiveIssues
 The `updateActiveIssues` function is used to add a new issue to the list of active issues stored in the browser's localStorage.
 
 - It takes an `issue` object as an argument. The `issue` object is expected to contain details about the issue, but it may not yet have an `id`.
@@ -23,6 +24,7 @@ The `updateActiveIssues` function is used to add a new issue to the list of acti
 Overall, this function is used to generate a unique id for a new issue, add the new issue to the existing list of issues, and update the list of issues in localStorage.
 
 
+## updateActiveIssuesDOM
 The `updateActiveIssuesDOM` function is used to update the DOM to reflect the current list of active issues. 
 
 - It takes an optional `newIssueId` argument. This is the ID of a new issue that has just been added.
@@ -50,3 +52,16 @@ The `updateActiveIssuesDOM` function is used to update the DOM to reflect the cu
     - It replaces each `placeholderElement` with the corresponding issue card HTML.
 
 In summary, this function updates the DOM to reflect the current list of active issues, either by adding a single new issue card when a new issue is added, or by adding all active issues when the page is loaded or reloaded.
+
+## deleteActiveIssuesDOM 
+This function is used to remove all issue cards from the DOM when the issues data gets cleared.
+
+- `const nodesForDeletion = [ ...issuesListElement.children ].slice(1)`: This line is creating an array from the children of `issuesListElement`, which represents the list of issues in the DOM. It then uses `.slice(1)` to get a new array that excludes the first child. This is because the first child node is likely a static part of the layout (such as a title or header), and we don't want to delete that. 
+
+- `nodesForDeletion.forEach((node) => {...})`: This line iterates over the `nodesForDeletion` array. For each node, it removes the node from the `issuesListElement` using the `.removeChild(node)` method. 
+
+- `noIssuesMsg.style.display = "block"`: This line changes the CSS `display` property of `noIssuesMsg` (which is likely a message saying "No issues" or similar) to `block`, making it visible.
+
+- `noIssuesMsg.parentElement.style.justifyContent = "center"`: This line centers the `noIssuesMsg` element within its parent element. This is likely done for aesthetic reasons, to make the interface look better when there are no issues displayed.
+
+In summary, this function is used to clear all issue cards from the DOM and display a "No issues" message when the issue data gets cleared.
