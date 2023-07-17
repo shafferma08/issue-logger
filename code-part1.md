@@ -21,3 +21,32 @@ The `updateActiveIssues` function is used to add a new issue to the list of acti
 - Finally, `return issueWithId` returns the new issue object, now including its unique id.
 
 Overall, this function is used to generate a unique id for a new issue, add the new issue to the existing list of issues, and update the list of issues in localStorage.
+
+
+The `updateActiveIssuesDOM` function is used to update the DOM to reflect the current list of active issues. 
+
+- It takes an optional `newIssueId` argument. This is the ID of a new issue that has just been added.
+
+- `const issues = getActiveIssues()` retrieves the current list of active issues.
+
+- The function then checks two conditions in the `if` statement: whether there are any active issues and whether a `newIssueId` has been provided.
+
+- If both conditions are true, this indicates that a new issue has been added. The function then does the following:
+
+    - It hides the `noIssuesMsg` element and aligns the remaining content at the start of its parent container.
+
+    - It checks if the ID of the last issue in the list matches the `newIssueId`. If it does, this issue is assigned to `newIssue`. Otherwise, it searches for an issue with the `newIssueId` in the list of issues and assigns this issue to `newIssue`.
+
+    - It creates a new `div` element (`placeholderElement`), generates the HTML for the new issue card using the `issueCardTemplate` function, and appends the `placeholderElement` to the `issuesListElement`.
+
+    - It replaces the `placeholderElement` with the new issue card HTML.
+
+- If there are active issues but no `newIssueId` has been provided, this indicates that the page has just been loaded or reloaded. The function then does the following:
+
+    - It hides the `noIssuesMsg` element and aligns the remaining content at the start of its parent container.
+
+    - It iterates over each issue in the list of issues, generates the HTML for the issue card using the `issueCardTemplate` function, and appends a new `div` element (the `placeholderElement`) to the `issuesListElement` for each issue.
+
+    - It replaces each `placeholderElement` with the corresponding issue card HTML.
+
+In summary, this function updates the DOM to reflect the current list of active issues, either by adding a single new issue card when a new issue is added, or by adding all active issues when the page is loaded or reloaded.
